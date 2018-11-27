@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8" />
-	<title>Home</title>
+	<title>Institution</title>
 	<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
 </head>
 <body>
@@ -11,7 +11,7 @@
 	<div class="container">
 		<h2>Institution</h2>
 		
-		<form class="form-horizontal" action="/institutions/save"
+		<form class="form-vertical" action="/institutions/save"
 			method="post" th:object="${institution}">
 			<input type="hidden" th:field="*{id}" />
 			
@@ -27,7 +27,11 @@
 					<input type="text" class="form-control" id="txt-address" th:field="*{address}" maxlength="100" />
 				</div>
 			</div>
-			<input type="submit" value="Save" class="btn btn-default" />
+			<div class="row">
+				<div class="form-group col-md-6">			
+					<input type="submit" value="Save" class="btn btn-default" />
+				</div>
+			</div>
 		</form>					
 	</div>
 	

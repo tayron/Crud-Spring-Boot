@@ -1,29 +1,26 @@
 package br.com.tutorial.entities;
 
-import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 
 @Entity
-public class Institution {
+public class Student {
 
 	@Id
 	@GeneratedValue
 	private Long id;
 	
 	@Column(length = 30)
-	private String name;	
+	private String name;
 	
 	@Column(length = 100)
 	private String address;
-	
-	@OneToMany(mappedBy = "institution")
-	private Set<Student> student;
-	
+
+	@ManyToOne
+	private Institution institution;
 
 
 	public Long getId() {
@@ -56,13 +53,13 @@ public class Institution {
 	}
 
 
-	public Set<Student> getStudent() {
-		return student;
+	public Institution getInstitution() {
+		return institution;
 	}
 
 
-	public void setStudent(Set<Student> student) {
-		this.student = student;
+	public void setInstitution(Institution institution) {
+		this.institution = institution;
 	}
 	
 	

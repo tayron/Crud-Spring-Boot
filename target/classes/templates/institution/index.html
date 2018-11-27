@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8" />
-	<title>Home</title>
+	<title>Institution</title>
 	<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
 </head>
 <body>
@@ -10,9 +10,17 @@
 	
 	<div class="container">
 		<h2>Institution</h2>
-		<a href="/institutions/add" class="btn btn-default">New</a>
+				
+		<div class="row">
+			<div class="form-group col-md-12">
+				<input type="text" id="txt-search-institution" class="form-control" />
+				<button type="button" class="btn btn-default" id="btn-search-institution">Search</button>
+				<button type="button" class="btn btn-default" id="btn-reset">Reset</button>
+				<a href="/institutions/add" class="btn btn-default">New</a>
+			</div>
+		</div>
 		
-		<table class="table">
+		<table class="table" id="tbl-institutions">
 			<thead>
 				<tr>
 					<th>Id</th>
@@ -35,5 +43,69 @@
 	
 	<div th:replace="fragments/fragments :: footer"></div>	
 	<script src="/webjars/jquery/3.1.1-1/jquery.min.js"></script>	
+	<script type="text/javascript">
+		$(document).ready(function(){
+			
+			$('#txt-search-institution').keydown(function(event){ 
+			    var keyCode = (event.keyCode ? event.keyCode : event.which);   
+			    if (keyCode == 13) {
+			        $('#btn-search-institution').trigger('click');
+			    }
+			});			
+			
+			$('#btn-reset').click(function(){
+				$.ajax({
+					method: 'GET',
+					url: '/institutions/searchByName',
+					success: function(data){
+						$('#tbl-institutions tbody > tr').remove();
+						$('#txt-search-institution').val('');
+						$.each(data, function(){
+							$('#tbl-institutions tbody').append(
+								'<tr>' +
+								'	<td>' + this.id + '</td>'  +
+								'	<td>' + this.name + '</td>'  +
+								'	<td>' +
+								'		<a href="/institutions/edit/' + this.id + '">Edit</a> | ' +
+								'		<a href="/institutions/delete/' + this.id + '">Delete</a>' +
+								'	</td>' + 
+								'</tr>'
+							);
+						});
+					},
+					error: function(){
+						alert("Can't possible to execute the reset");
+					}					
+					
+				});
+			});
+			
+			$('#btn-search-institution').click(function(){
+				$.ajax({
+					method: 'GET',
+					url: '/institutions/searchByName/' + $('#txt-search-institution').val(),
+					success: function(data){
+						$('#tbl-institutions tbody > tr').remove();						
+						$.each(data, function(){
+							$('#tbl-institutions tbody').append(
+								'<tr>' +
+								'	<td>' + this.id + '</td>'  +
+								'	<td>' + this.name + '</td>'  +
+								'	<td>' +
+								'		<a href="/institutions/edit/' + this.id + '">Edit</a> | ' +
+								'		<a href="/institutions/delete/' + this.id + '">Delete</a>' +
+								'	</td>' + 
+								'</tr>'
+							);
+						});
+					},
+					error: function(){
+						alert("Can't possible to execute the search by " + $('#txt-search-institution').val());
+					}
+				});
+			});
+			
+		});
+	</script>	
 </body>
 </html>

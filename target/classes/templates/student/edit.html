@@ -2,17 +2,17 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8" />
-	<title>Institution</title>
+	<title>Student</title>
 	<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
 </head>
 <body>
 	<div th:replace="fragments/fragments :: header"></div>
 	
 	<div class="container">
-		<h2>Institution</h2>
+		<h2>Student</h2>
 		
-		<form class="form-vertical" action="/institutions/save"
-			method="post" th:object="${institution}">
+		<form class="form-vertical" action="/students/save"
+			method="post" th:object="${student}">
 			<input type="hidden" th:field="*{id}" />
 			
 			<div class="row">
@@ -21,6 +21,15 @@
 					<input type="text" class="form-control" id="txt-name" th:field="*{name}" maxlength="30" />
 				</div>
 			</div>
+			<div class="row">
+				<div class="form-group col-md-6">
+					<label for="slt-institution">Institution:</label> 
+					<select class="form-control" th:field="*{institution.id}">
+						<option th:each="institution: ${institutions}"
+							th:value="${institution.id}" th:text="${institution.name}"></option>
+					</select>
+				</div>
+			</div>			
 			<div class="row">
 				<div class="form-group col-md-6">
 					<label for="txt-address">Address:</label> 

@@ -1,6 +1,7 @@
 package br.com.tutorial.controllers;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,8 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-
 import br.com.tutorial.entities.Institution;
 import br.com.tutorial.repositories.InstitutionRepository;
 
@@ -34,7 +35,7 @@ public class InstitutionsController {
 	@GetMapping("/add")
 	public ModelAndView add(Institution institution)
 	{
-		ModelAndView result = new ModelAndView("insttution/add");
+		ModelAndView result = new ModelAndView("institution/add");
 		result.addObject("institution", new Institution());
 		return result;
 		
@@ -63,5 +64,15 @@ public class InstitutionsController {
 	{
 		repository.delete(id);
 		return "redirect:/institutions/index";
+	}	
+	
+	@GetMapping({"/searchByName/{name}", "/searchByName"})
+	public @ResponseBody List<Institution> searchByName(@PathVariable Optional<String> name){		
+		if(name.isPresent()) {
+			//return repository.findByNameContaining(name.get());
+			return repository.findAll();
+		}else {
+			return repository.findAll();
+		}
 	}	
 }
