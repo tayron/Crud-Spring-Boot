@@ -1,6 +1,6 @@
 package br.com.tutorial.entities;
 
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,48 +22,39 @@ public class Institution {
 	private String address;
 	
 	@OneToMany(mappedBy = "institution")
-	private Set<Student> student;
-	
-
+	private List<Student> student;
 
 	public Long getId() {
 		return id;
 	}
 
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-
 
 	public String getName() {
 		return name;
 	}
 
-
 	public void setName(String name) {
 		this.name = name;
 	}
-
 
 	public String getAddress() {
 		return address;
 	}
 
-
 	public void setAddress(String address) {
 		this.address = address;
 	}
 
-
-	public Set<Student> getStudent() {
+	public List<Student> getStudent() {
 		return student;
 	}
 
-
-	public void setStudent(Set<Student> student) {
+	public void setStudent(List<Student> student) {
 		this.student = student;
 	}
-	
-	
+
+
 }

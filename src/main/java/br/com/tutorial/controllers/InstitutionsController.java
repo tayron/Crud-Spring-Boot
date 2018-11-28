@@ -69,8 +69,7 @@ public class InstitutionsController {
 	@GetMapping({"/searchByName/{name}", "/searchByName"})
 	public @ResponseBody List<Institution> searchByName(@PathVariable Optional<String> name){		
 		if(name.isPresent()) {
-			//return repository.findByNameContaining(name.get());
-			return repository.findAll();
+			return repository.findByNameContaining(name.get());
 		}else {
 			return repository.findAll();
 		}

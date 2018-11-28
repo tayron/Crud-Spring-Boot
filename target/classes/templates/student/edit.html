@@ -23,6 +23,12 @@
 			</div>
 			<div class="row">
 				<div class="form-group col-md-6">
+					<label for="txt-age">Age:</label> 
+					<input type="text" class="form-control" id="txt-age" th:field="*{age}" />
+				</div>
+			</div>				
+			<div class="row">
+				<div class="form-group col-md-6">
 					<label for="slt-institution">Institution:</label> 
 					<select class="form-control" th:field="*{institution.id}">
 						<option th:each="institution: ${institutions}"

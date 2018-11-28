@@ -81,14 +81,10 @@ public class StudentsController {
 	
 	@GetMapping({"/searchByName/{name}", "/searchByName"})
 	public @ResponseBody List<Student> searchByName(@PathVariable Optional<String> name){
-		List<Student> students = null;
-		
 		if(name.isPresent()) {
-			students = repository.findByNameContaining(name.get());
+			return repository.findByNameContaining(name.get());
 		}else {
-			students = repository.findAll();
+			return repository.findAll();
 		}
-			
-		return students;
 	}	
 }
