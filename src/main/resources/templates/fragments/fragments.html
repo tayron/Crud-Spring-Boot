@@ -26,6 +26,20 @@
 					<li><a href="/institutions/index">Institutions</a></li>
 					<li><a href="/students/index">Students</a></li>
 				</ul>
+				
+		        
+		        <form class="navbar-form pull-right" th:action="@{/logout}" method="post" th:if="${#httpServletRequest.remoteUser}">
+					<p class="navbar-text">
+		              Logged in as <a href="#" class="navbar-link">[[${#httpServletRequest.remoteUser}]]</a>
+		            </p>	
+		            <button type="submit" class="btn">Sign out</button>
+		        </form>
+				
+				<form class="navbar-form pull-right" th:action="@{/login}" method="post" th:if="!${#httpServletRequest.remoteUser}">
+				  <input class="form-control" type="text" placeholder="Email" autocomplete="off" name="username">
+				  <input class="form-control" type="password" placeholder="Password" autocomplete="off" name="password">
+				  <button type="submit" class="btn">Sign in</button>
+				</form>
 			</div>
 		</div>
 	</nav>

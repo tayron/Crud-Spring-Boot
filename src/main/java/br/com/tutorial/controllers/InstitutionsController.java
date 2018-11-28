@@ -62,7 +62,8 @@ public class InstitutionsController {
 	@GetMapping("/delete/{id}")
 	public String delete(@PathVariable Long id)
 	{
-		repository.delete(id);
+		Institution institution = repository.getOne(id);
+		repository.delete(institution);
 		return "redirect:/institutions/index";
 	}	
 	
