@@ -22,7 +22,7 @@ public class Student {
 	@Column(length = 100)
 	private String address;
 
-	@ManyToOne
+    @ManyToOne    
 	private Institution institution;
 
 	public Long getId() {

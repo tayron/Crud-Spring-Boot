@@ -18,5 +18,11 @@ public class MainController {
 	public String login(Model model)
 	{		
 		return "login";		
-	}	
+	}
+	
+	@RequestMapping("/access-denied")
+	public String accessDenied(Model model)
+	{		
+		return "access-denied";		
+	}		
 }

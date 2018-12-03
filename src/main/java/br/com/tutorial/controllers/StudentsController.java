@@ -1,5 +1,6 @@
 package br.com.tutorial.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,7 +40,7 @@ public class StudentsController {
 	}
 	
 	@GetMapping("/add")
-	public ModelAndView add(Institution institution)
+	public ModelAndView add()
 	{
 		ModelAndView result = new ModelAndView("student/add");
 		
@@ -83,10 +84,29 @@ public class StudentsController {
 	
 	@GetMapping({"/searchByName/{name}", "/searchByName"})
 	public @ResponseBody List<Student> searchByName(@PathVariable Optional<String> name){
+		List<Student> list = null;
+		
 		if(name.isPresent()) {
-			return repository.findByNameContaining(name.get());
+			list = repository.findByNameContaining(name.get());
 		}else {
-			return repository.findAll();
+			list = repository.findAll();
+		}		
+		
+		List<Student> listStudent = new ArrayList<Student>();
+		for (Student student : list) {
+			
+			Institution institutionEntity = new Institution();
+			institutionEntity.setId(student.getInstitution().getId());
+			institutionEntity.setName(student.getInstitution().getName());
+			
+			Student studentEntity = new Student();
+			studentEntity.setId(student.getId());
+			studentEntity.setName(student.getName());
+			studentEntity.setInstitution(institutionEntity);
+			
+			listStudent.add(studentEntity);
 		}
+		
+		return listStudent;
 	}	
 }

@@ -33,7 +33,7 @@ public class InstitutionsController {
 	}
 	
 	@GetMapping("/add")
-	public ModelAndView add(Institution institution)
+	public ModelAndView add()
 	{
 		ModelAndView result = new ModelAndView("institution/add");
 		result.addObject("institution", new Institution());

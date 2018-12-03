@@ -20,7 +20,7 @@
 			</div>
 		</div>
 		
-		<table class="table" id="tbl-students">
+		<table class="table" id="tbl-data">
 			<thead>
 				<tr>
 					<th>Id</th>
@@ -30,15 +30,15 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="student : ${students}">
-					<td th:text="${student.id}"></td>
-					<td th:text="${student.name}"></td>
+				<tr th:each="data : ${students}">
+					<td th:text="${data.id}"></td>
+					<td th:text="${data.name}"></td>
 					<td>
-						<a th:href="@{/institutions/edit/{id}(id=${student.institution.id})}" th:text="${student.institution.name}"></a>
+						<a th:href="@{/institutions/edit/{id}(id=${data.institution.id})}" th:text="${data.institution.name}"></a>
 					</td>					
 					<td>
-						<a th:href="@{/students/edit/{id}(id=${student.id})}">Edit</a>
-						<a th:href="@{/students/delete/{id}(id=${student.id})}">Delete</a>
+						<a th:href="@{/students/edit/{id}(id=${data.id})}">Edit</a>
+						<a th:href="@{/students/delete/{id}(id=${data.id})}">Delete</a>
 					</td>
 				</tr>
 			</tbody>
@@ -62,14 +62,14 @@
 					method: 'GET',
 					url: '/students/searchByName',
 					success: function(data){
-						$('#tbl-students tbody > tr').remove();
+						$('#tbl-data tbody > tr').remove();
 						$('#txt-search').val('');
 						$.each(data, function(){
-							$('#tbl-students tbody').append(
+							$('#tbl-data tbody').append(
 								'<tr>' +
 								'	<td>' + this.id + '</td>'  +
 								'	<td>' + this.name + '</td>'  +
-								'	<td><a href="/institution/edit/' + this.institution.id + '" th:text="' + this.institution.name + '"></a></td>'  +
+								'	<td><a href="/institutions/edit/' + this.institution.id + '">' + this.institution.name + '</a></td>'  +
 								'	<td>' +
 								'		<a href="/students/edit/' + this.id + '">Edit</a> | ' +
 								'		<a href="/students/delete/' + this.id + '">Delete</a>' +
@@ -90,13 +90,13 @@
 					method: 'GET',
 					url: '/students/searchByName/' + $('#txt-search').val(),
 					success: function(data){
-						$('#tbl-students tbody > tr').remove();						
+						$('#tbl-data tbody > tr').remove();						
 						$.each(data, function(){
-							$('#tbl-sudents tbody').append(
+							$('#tbl-data tbody').append(
 								'<tr>' +
 								'	<td>' + this.id + '</td>'  +
 								'	<td>' + this.name + '</td>'  +
-								'	<td><a href="/institution/edit/' + this.institution.id + '" th:text="' + this.institution.name + '"></a></td>'  +
+								'	<td><a href="/institutions/edit/' + this.institution.id + '">' + this.institution.name + '</a></td>'  +
 								'	<td>' +
 								'		<a href="/students/edit/' + this.id + '">Edit</a> | ' +
 								'		<a href="/students/delete/' + this.id + '">Delete</a>' +

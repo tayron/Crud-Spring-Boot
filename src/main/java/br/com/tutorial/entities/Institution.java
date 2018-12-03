@@ -2,8 +2,10 @@ package br.com.tutorial.entities;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -21,7 +23,7 @@ public class Institution {
 	@Column(length = 100)
 	private String address;
 	
-	@OneToMany(mappedBy = "institution")
+	@OneToMany(mappedBy = "institution", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Student> student;
 
 	public Long getId() {
@@ -55,6 +57,4 @@ public class Institution {
 	public void setStudent(List<Student> student) {
 		this.student = student;
 	}
-
-
 }
