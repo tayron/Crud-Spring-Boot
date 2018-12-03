@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+	<title>User</title>
+	<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
+</head>
+<body>
+	<div th:replace="fragments/fragments :: header"></div>
+	
+	<div class="container">
+		<h2>User</h2>
+		
+		<form class="form-vertical" action="/users/save"
+			method="post" th:object="${user}">
+			<input type="hidden" th:field="*{id}" />
+			
+			<div class="row">
+				<div class="form-group col-md-6">
+					<label for="txt-name">Name:</label> 
+					<input type="text" class="form-control" id="txt-name" th:field="*{name}" />
+				</div>
+			</div>
+			<div class="row">
+				<div class="form-group col-md-6">
+					<label for="slt-role">Role:</label> 
+					<select class="form-control" th:field="*{role.id}">
+						<option th:each="role: ${roles}"
+							th:value="${role.id}" th:text="${role.name}"></option>
+					</select>
+				</div>
+			</div>			
+			<div class="row">
+				<div class="form-group col-md-6">
+					<label for="txt-email">Email:</label> 
+					<input type="text" class="form-control" id="txt-email" th:field="*{email}" autocomplete="false" />
+				</div>
+			</div>
+			<div class="row">
+				<div class="form-group col-md-6">
+					<label for="txt-password">Password:</label> 
+					<input type="password" class="form-control" id="txt-password" th:field="*{passwordEditable}" autocomplete="false" placeholder="******" />
+				</div>
+			</div>
+			<div class="row">
+				<div class="form-group col-md-6">			
+					<input type="submit" value="Save" class="btn btn-default" />
+				</div>
+			</div>
+		</form>					
+	</div>
+	
+	<div th:replace="fragments/fragments :: footer"></div>	
+	<script src="/webjars/jquery/3.1.1-1/jquery.min.js"></script>	
+</body>
+</html>

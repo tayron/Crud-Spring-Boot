@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+	<title>Users Roles</title>
+	<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
+</head>
+<body>
+	<div th:replace="fragments/fragments :: header"></div>
+	
+	<div class="container">
+		<h2>Users Roles</h2>
+		
+		<form class="form-vertical" action="/roles/save"
+			method="post" th:object="${role}">
+			<input type="hidden" th:field="*{id}" />
+			
+			<div class="row">
+				<div class="form-group col-md-6" th:classappend="${#fields.hasErrors('name')} ? 'has-error' : null">
+					<label class="control-label" for="txt-name">Name:</label>
+					<input type="text" class="form-control" id="txt-name" th:field="*{name}" maxlength="85" />
+					<div th:if="${#fields.hasErrors('name')}" class="help-block" th:errors="*{name}"></div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="form-group col-md-6">			
+					<input type="submit" value="Save" class="btn btn-default" />
+				</div>
+			</div>
+		</form>					
+	</div>
+	
+	<div th:replace="fragments/fragments :: footer"></div>	
+	<script src="/webjars/jquery/3.1.1-1/jquery.min.js"></script>	
+</body>
+</html>
