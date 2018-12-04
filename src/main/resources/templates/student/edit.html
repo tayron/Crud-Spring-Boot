@@ -16,16 +16,10 @@
 			<input type="hidden" th:field="*{id}" />
 			
 			<div class="row">
-				<div class="form-group col-md-6">
-					<label for="txt-name">Name:</label> 
-					<input type="text" class="form-control" id="txt-name" th:field="*{name}" maxlength="30" />
-				</div>
+				<div th:replace="fragments/form-input :: input-text(id='txt-name', name='name', label='Name', maxlength='30')"></div>
 			</div>
 			<div class="row">
-				<div class="form-group col-md-6">
-					<label for="txt-age">Age:</label> 
-					<input type="text" class="form-control" id="txt-age" th:field="*{age}" />
-				</div>
+				<div th:replace="fragments/form-input :: input-text(id='txt-age', name='age', label='Age', maxlength='2')"></div>
 			</div>				
 			<div class="row">
 				<div class="form-group col-md-6">
@@ -37,14 +31,11 @@
 				</div>
 			</div>			
 			<div class="row">
-				<div class="form-group col-md-6">
-					<label for="txt-address">Address:</label> 
-					<input type="text" class="form-control" id="txt-address" th:field="*{address}" maxlength="100" />
-				</div>
+				<div th:replace="fragments/form-input :: input-text(id='txt-address', name='address', label='Address', maxlength='100')"></div>
 			</div>
 			<div class="row">
 				<div class="form-group col-md-6">			
-					<input type="submit" value="Save" class="btn btn-default" />
+					<div th:replace="fragments/form-button :: submit(id='btn-submit', label='Save')"></div>
 				</div>
 			</div>
 		</form>					

@@ -21,7 +21,7 @@ public class Role {
 	
 	@Column(length = 85)
 	@NotBlank(message = "The name can't be blank")
-	@Size(min = 2, max = 85, message = "Your password must between 2 and 85 characters")
+	@Size(min = 2, max = 85, message = "The name must between 2 and 85 characters")
 	private String name;
 
 	@OneToMany(mappedBy = "role", fetch = FetchType.EAGER, cascade = CascadeType.ALL)

@@ -1,54 +1,42 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-	<meta charset="UTF-8" />
-	<title>Home</title>
-	<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
-</head>
-<body>
-	<!-- ** HEADER ** -->
-	<nav class="navbar navbar-inverse navbar-static-top"
-		th:fragment="header">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed"
-					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-					aria-controls="navbar">
-					<span class="sr-only">Toggle navigation</span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-			</div>
-			<a class="navbar-brand" href="#">Hello Spring Boot</a>
-			<div id="navbar" class="navbar-collapse collapse">
-				<ul class="nav navbar-nav">
-					<li><a href="/">Home</a></li>
-					<li><a href="/institutions/index">Institutions</a></li>
-					<li><a href="/students/index">Students</a></li>
-					<li><a href="/users/index">Users</a></li>
-					<li><a href="/roles/index">Users Roles</a></li>
-				</ul>
-				
-		        
-		        <form class="navbar-form pull-right" th:action="@{/logout}" method="post" th:if="${#httpServletRequest.remoteUser}">
-					<p class="navbar-text">
-		              Logged in as <a href="#" class="navbar-link">[[${#httpServletRequest.remoteUser}]]</a>
-		            </p>	
-		            <button type="submit" class="btn">Sign out</button>
-		        </form>
-				
-				<form class="navbar-form pull-right" th:action="@{/login}" method="post" th:if="!${#httpServletRequest.remoteUser}">
-				  <input class="form-control" type="text" placeholder="Email" autocomplete="off" name="username">
-				  <input class="form-control" type="password" placeholder="Password" autocomplete="off" name="password">
-				  <button type="submit" class="btn">Sign in</button>
-				</form>
-			</div>
+<!-- ** HEADER ** -->
+<nav class="navbar navbar-inverse navbar-static-top"
+	th:fragment="header">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed"
+				data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+				aria-controls="navbar">
+				<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
 		</div>
-	</nav>
-	
-	<!-- ** FOOTER ** -->
-	<div th:fragment="footer" style="text-align: center;">&copy; 2018
-		Tayron Miranda</div>
-		
-</body>
-</html>
+		<a class="navbar-brand" href="#">Hello Spring Boot</a>
+		<div id="navbar" class="navbar-collapse collapse">
+			<ul class="nav navbar-nav">
+				<li><a href="/">Home</a></li>
+				<li><a href="/institutions/index">Institutions</a></li>
+				<li><a href="/students/index">Students</a></li>
+				<li><a href="/users/index">Users</a></li>
+				<li><a href="/roles/index">Users Roles</a></li>
+			</ul>
+			
+	        
+	        <form class="navbar-form pull-right" th:action="@{/logout}" method="post" th:if="${#httpServletRequest.remoteUser}">
+				<p class="navbar-text">
+	              Logged in as <a href="#" class="navbar-link">[[${#httpServletRequest.remoteUser}]]</a>
+	            </p>	
+	            <button type="submit" class="btn">Sign out</button>
+	        </form>
+			
+			<form class="navbar-form pull-right" th:action="@{/login}" method="post" th:if="!${#httpServletRequest.remoteUser}">
+			  <input class="form-control" type="text" placeholder="Email" autocomplete="off" name="username">
+			  <input class="form-control" type="password" placeholder="Password" autocomplete="off" name="password">
+			  <button type="submit" class="btn">Sign in</button>
+			</form>
+		</div>
+	</div>
+</nav>
+
+<!-- ** FOOTER ** -->
+<div th:fragment="footer" style="text-align: center;">&copy; 2018 Tayron Miranda</div>

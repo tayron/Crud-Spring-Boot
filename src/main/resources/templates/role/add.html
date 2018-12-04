@@ -14,15 +14,11 @@
 		<form class="form-vertical" action="/roles/save"
 			method="post" th:object="${role}">
 			<div class="row">
-				<div class="form-group col-md-6" th:classappend="${#fields.hasErrors('name')} ? 'has-error' : null">
-					<label class="control-label" for="txt-name">Name:</label>
-					<input type="text" class="form-control" id="txt-name" th:field="*{name}" maxlength="85" />
-					<div th:if="${#fields.hasErrors('name')}" class="help-block" th:errors="*{name}"></div>
-				</div>
+				<div th:replace="fragments/form-input :: input-text(id='txt-name', name='name', label='Name', maxlength='85')"></div>
 			</div>
 			<div class="row">
 				<div class="form-group col-md-6">			
-					<input type="submit" value="Add" class="btn btn-default" />
+					<div th:replace="fragments/form-button :: submit(id='btn-submit', label='Add')"></div>
 				</div>
 			</div>
 		</form>					

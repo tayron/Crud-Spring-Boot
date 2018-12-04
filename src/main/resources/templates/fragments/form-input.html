@@ -1,0 +1,13 @@
+<!-- ** INPUT TEXT ** -->
+<div class="form-group col-md-6" th:classappend="${#fields.hasErrors('name')} ? 'has-error' : null" th:fragment="input-text(id, name, label, maxlength)">
+	<label class="control-label" th:for="${#strings.toLowerCase(field)}" th:text="${label}"></label>
+	<input type="text" class="form-control" th:id="${#strings.toLowerCase(id)}" th:name="${#strings.toLowerCase(name)}" th:field="*{name}" th:maxlength="${maxlength}" />
+	<div th:if="${#fields.hasErrors(name)}" class="help-block" th:errors="*{${name}}"></div>
+</div>
+
+<!-- ** INPUT PASSWORD ** -->
+<div class="form-group col-md-6" th:classappend="${#fields.hasErrors('name')} ? 'has-error' : null" th:fragment="input-password(id, name, label, maxlength)">
+	<label class="control-label" th:for="${#strings.toLowerCase(field)}" th:text="${label}"></label>
+	<input type="password" class="form-control" th:id="${#strings.toLowerCase(id)}" th:name="${#strings.toLowerCase(name)}" th:field="*{name}" th:maxlength="${maxlength}" autocomplete="false" placeholder="******" />
+	<div th:if="${#fields.hasErrors(name)}" class="help-block" th:errors="*{${name}}"></div>
+</div>
