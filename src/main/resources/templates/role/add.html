@@ -14,7 +14,7 @@
 		<form class="form-vertical" action="/roles/save"
 			method="post" th:object="${role}">
 			<div class="row">
-				<div th:replace="fragments/form-input :: input-text(id='txt-name', name='name', label='Name', maxlength='85')"></div>
+				<div th:replace="fragments/form-input :: input-text(field='name', label='Name', maxlength='85')"></div>
 			</div>
 			<div class="row">
 				<div class="form-group col-md-6">			

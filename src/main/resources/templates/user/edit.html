@@ -16,16 +16,16 @@
 			<input type="hidden" th:field="*{id}" />
 			
 			<div class="row">
-				<div th:replace="fragments/form-input :: input-text(id='txt-name', name='name', label='Name', maxlength='85')"></div>
+				<div th:replace="fragments/form-input :: input-text(field='name', label='Name', maxlength='85')"></div>
 			</div>
 			<div class="row">
-				<div th:replace="fragments/form-select :: select(id='txt-role', name='role', label='Role', options=${roles})"></div>
+				<div th:replace="fragments/form-select :: select(field='role', label='Role', options=${roles})"></div>
 			</div>			
 			<div class="row">
-				<div th:replace="fragments/form-input :: input-text(id='txt-email', name='email', label='Email', maxlength='85')"></div>
+				<div th:replace="fragments/form-input :: input-text(field='email', label='Email', maxlength='85')"></div>
 			</div>
 			<div class="row">
-				<div th:replace="fragments/form-input :: input-password(id='txt-password', name='passwordEditable', label='Password', maxlength='85')"></div>
+				<div th:replace="fragments/form-input :: input-password(field='passwordEditable', label='Password', maxlength='85')"></div>
 			</div>
 			<div class="row">
 				<div class="form-group col-md-6">

@@ -16,10 +16,10 @@
 			<input type="hidden" th:field="*{id}" />
 			
 			<div class="row">
-				<div th:replace="fragments/form-input :: input-text(id='txt-name', name='name', label='Name', maxlength='30')"></div>
+				<div th:replace="fragments/form-input :: input-text(field='name', label='Name', maxlength='30')"></div>
 			</div>
 			<div class="row">
-				<div th:replace="fragments/form-input :: input-text(id='txt-address', name='address', label='Address', maxlength='100')"></div>
+				<div th:replace="fragments/form-input :: input-text(field='address', label='Address', maxlength='100')"></div>
 			</div>
 			<div class="row">
 				<div class="form-group col-md-6">			

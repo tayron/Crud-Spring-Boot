@@ -1,7 +1,9 @@
-<div class="form-group col-md-6" th:classappend="${#fields.hasErrors('name')} ? 'has-error' : null" th:fragment="select(id, name, label, options)">
+<div class="form-group col-md-6" th:classappend="${#fields.hasErrors('name')} ? 'has-error' : null" th:fragment="select(field, label, options)">
 	<label class="control-label" th:for="${#strings.toLowerCase(field)}" th:text="${label}"></label> 
-	<select class="form-control" th:field="*{name}">
+	<select class="form-control" th:field="*{__${field}__}">
 		<option th:each="option: ${options}" th:value="${option.id}" th:text="${option.name}"></option>
 	</select>
-	<div th:if="${#fields.hasErrors(name)}" class="help-block" th:errors="*{${name}}"></div>
+    <ul th:if="${#fields.hasErrors('__${field}__')}" class="help-block">
+        <li th:each="error : ${#fields.errors('__${field}__')}" th:text="${error}" />
+    </ul>
 </div>

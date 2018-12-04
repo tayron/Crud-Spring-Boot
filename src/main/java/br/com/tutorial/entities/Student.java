@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -21,7 +22,7 @@ public class Student {
 	private String name;
 	
 	@Column(precision = 0)
-	@NotBlank(message = "The age can't be blank")		
+	@NotNull(message = "The age can't be null")
 	private int age;	
 	
 	@Column(length = 100)

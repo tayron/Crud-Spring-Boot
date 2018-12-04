@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -73,9 +74,10 @@ public class UsersController {
 	}
 	
 	@PostMapping("/save")
-	public String save(@Valid User user, BindingResult bindingResult, RedirectAttributes redirectAttributes)
+	public String save(@Valid User user, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model)
 	{
-        if (bindingResult.hasErrors()) {        	
+        if (bindingResult.hasErrors()) {       
+        	model.addAttribute("roles", repositoryRole.findAll());
             return (user.getId() == null) ? "user/add" :"user/edit"; 
         }
         
@@ -90,6 +92,7 @@ public class UsersController {
         Message message = (new Message()).setSuccess("Role inserted successfully");        
         redirectAttributes.addFlashAttribute("message", message);
         
+        user.setActive(true);
 		repository.save(user);		
 		return "redirect:/users/index";		
 	}

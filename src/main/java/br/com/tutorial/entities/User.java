@@ -7,6 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -27,7 +28,6 @@ public class User {
 	private String email;
 	
 	@Column(length = 1)
-	@NotBlank(message = "The active can't be blank")		
 	private Boolean active = true;	
 	
 	@Column(length = 85)

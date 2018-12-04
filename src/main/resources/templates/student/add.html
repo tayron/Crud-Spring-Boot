@@ -14,22 +14,16 @@
 		<form class="form-vertical" action="/students/save"
 			method="post" th:object="${student}">
 			<div class="row">
-				<div th:replace="fragments/form-input :: input-text(id='txt-name', name='name', label='Name', maxlength='30')"></div>
+				<div th:replace="fragments/form-input :: input-text(field='name', label='Name', maxlength='30')"></div>
 			</div>
 			<div class="row">
-				<div th:replace="fragments/form-input :: input-text(id='txt-age', name='age', label='Age', maxlength='2')"></div>
+				<div th:replace="fragments/form-input :: input-text(field='age', label='Age', maxlength='2')"></div>
 			</div>
 			<div class="row">
-				<div class="form-group col-md-6">
-					<label for="slt-institution">Institution:</label> 
-					<select class="form-control" th:field="*{institution.id}">
-						<option th:each="institution: ${institutions}"
-							th:value="${institution.id}" th:text="${institution.name}"></option>
-					</select>
-				</div>
+				<div th:replace="fragments/form-select :: select(field='institution.id', label='Institution', options=${institutions})"></div>
 			</div>			
 			<div class="row">
-				<div th:replace="fragments/form-input :: input-text(id='txt-address', name='address', label='Address', maxlength='100')"></div>
+				<div th:replace="fragments/form-input :: input-text(field='address', label='Address', maxlength='100')"></div>
 			</div>			
 			<div class="row">
 				<div class="form-group col-md-6">			
