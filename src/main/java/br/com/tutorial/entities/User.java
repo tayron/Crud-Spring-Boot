@@ -7,7 +7,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -30,12 +29,12 @@ public class User {
 	@Column(length = 1)
 	private Boolean active = true;	
 	
-	@Column(length = 85)
-	@NotBlank(message = "The name can't be blank")
-	@Size(min = 6, max = 85, message = "The name must between 6 and 85 characters")	
+	@Column(length = 85)	
 	private String password;
 	
 	@Transient
+	@NotBlank(message = "The name can't be blank")
+	@Size(min = 6, max = 85, message = "The name must between 6 and 85 characters")	
 	private String passwordEditable;
 	
 	@Transient
