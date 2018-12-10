@@ -1,5 +1,6 @@
 package br.com.tutorial.entities;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -27,6 +28,20 @@ public class Role {
 	@OneToMany(mappedBy = "role", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<User> user;
 
+    @Column(
+        nullable = false, 
+        updatable = false,
+        columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
+    )
+    private Timestamp created;	
+    
+    @Column(
+		nullable = false,
+		columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
+	)
+    private Timestamp updated;
+
+    
 	public Long getId() {
 		return id;
 	}
@@ -49,5 +64,21 @@ public class Role {
 
 	public void setUser(List<User> user) {
 		this.user = user;
+	}
+
+	public Timestamp getCreated() {
+		return created;
+	}
+
+	public void setCreated(Timestamp created) {
+		this.created = created;
+	}
+
+	public Timestamp getUpdated() {
+		return updated;
+	}
+
+	public void setUpdated(Timestamp updated) {
+		this.updated = updated;
 	}
 }

@@ -75,7 +75,11 @@ public class UsersController {
 	
 	@PostMapping("/save")
 	public String save(@Valid User user, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model)
-	{
+	{   
+		if(user.getId() == null && user.getPasswordEditable().isEmpty()) {
+			bindingResult.rejectValue("passwordEditable", "error.user", "Tha password can't not be blank.");
+		}
+        
         if (bindingResult.hasErrors()) {       
         	model.addAttribute("roles", repositoryRole.findAll());
             return (user.getId() == null) ? "user/add" :"user/edit"; 

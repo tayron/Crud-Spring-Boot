@@ -1,5 +1,7 @@
 package br.com.tutorial.entities;
 
+import java.sql.Timestamp;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -33,6 +35,21 @@ public class Student {
     @ManyToOne    
 	private Institution institution;
 
+    @Column(
+        nullable = false, 
+        updatable = false,
+        columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
+    )
+    private Timestamp created;	
+    
+    @Column(
+		nullable = false,
+		columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
+	)
+    private Timestamp updated;
+
+    
+    
 	public Long getId() {
 		return id;
 	}
@@ -72,5 +89,21 @@ public class Student {
 	public void setInstitution(Institution institution) {
 		this.institution = institution;
 	}
-	
+
+	public Timestamp getCreated() {
+		return created;
+	}
+
+	public void setCreated(Timestamp created) {
+		this.created = created;
+	}
+
+	public Timestamp getUpdated() {
+		return updated;
+	}
+
+	public void setUpdated(Timestamp updated) {
+		this.updated = updated;
+	}
+    
 }

@@ -1,16 +1,15 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-	<meta charset="UTF-8" />
-	<title>Home</title>
-	<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
-</head>
-<body>	
-	<div class="row" th:fragment="message-alert">
-		<div class="col-md-12" th:if="${message != null}"> 
-			<p class="alert alert-success" th:if="${message.getSuccess()}" th:text="${message.getSuccess()}"></p>
-			<p class="alert alert-danger" th:if="${message.getError()}" th:text="${message.getError()}"></p>
-		</div>
+<!-- ** MESSAGE-ALERT ** -->
+<div class="row" th:fragment="message-alert">
+	<div class="col-md-12" th:if="${message != null}"> 
+		<p class="alert alert-success" th:if="${message.getSuccess()}" th:text="${message.getSuccess()}"></p>
+		<p class="alert alert-danger" th:if="${message.getError()}" th:text="${message.getError()}"></p>
 	</div>
-</body>
-</html>
+</div>
+
+<!-- ** MESSAGE-ALERT ERROR ** -->
+<div class="row" th:fragment="error(message)">
+	<div class="col-md-12"> 
+		<p class="alert alert-danger" th:if="${message}" th:text="${message}"></p>
+	</div>
+</div>
+

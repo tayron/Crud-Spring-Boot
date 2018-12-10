@@ -1,5 +1,6 @@
 package br.com.tutorial.entities;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -32,6 +33,20 @@ public class Institution {
 	@OneToMany(mappedBy = "institution", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Student> student;
 
+    @Column(
+        nullable = false, 
+        updatable = false,
+        columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
+    )
+    private Timestamp created;	
+    
+    @Column(
+		nullable = false,
+		columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
+	)
+    private Timestamp updated;
+
+    
 	public Long getId() {
 		return id;
 	}
@@ -62,5 +77,21 @@ public class Institution {
 
 	public void setStudent(List<Student> student) {
 		this.student = student;
+	}
+
+	public Timestamp getCreated() {
+		return created;
+	}
+
+	public void setCreated(Timestamp created) {
+		this.created = created;
+	}
+
+	public Timestamp getUpdated() {
+		return updated;
+	}
+
+	public void setUpdated(Timestamp updated) {
+		this.updated = updated;
 	}
 }

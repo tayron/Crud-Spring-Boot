@@ -2,21 +2,17 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
 	<meta charset="UTF-8" />
-	<title>Home</title>
+	<title>Login</title>
 	<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
 </head>
 <body>
 	<div th:replace="fragments/fragments :: header"></div>
 	
-	<div class="container">
-        <h3 th:if="${param.error}">
-            Invalid username and password.
-        </h3>
-        <h3 th:if="${param.logout}">
-            You have been logged out.
-        </h3>        
+	<div class="container">        
+       	<div th:if="${param.error}" th:replace="fragments/message-alert :: error('Invalid username and password.')"></div>
+       	<div th:if="${param.logout}" th:replace="fragments/message-alert :: error('You have been logged out.')"></div>
 	</div>
-	
+		
 	<div th:replace="fragments/fragments :: footer"></div>	
 	<script src="/webjars/jquery/3.1.1-1/jquery.min.js"></script>	
 </body>

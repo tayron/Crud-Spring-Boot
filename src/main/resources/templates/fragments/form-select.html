@@ -1,6 +1,7 @@
 <div class="form-group col-md-6" th:classappend="${#fields.hasErrors('name')} ? 'has-error' : null" th:fragment="select(field, label, options)">
 	<label class="control-label" th:for="${#strings.toLowerCase(field)}" th:text="${label}"></label> 
 	<select class="form-control" th:field="*{__${field}__}">
+		<option value="">Selecione</option>
 		<option th:each="option: ${options}" th:value="${option.id}" th:text="${option.name}"></option>
 	</select>
     <ul th:if="${#fields.hasErrors('__${field}__')}" class="help-block">
