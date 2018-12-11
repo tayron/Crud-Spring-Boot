@@ -8,9 +8,10 @@
 <body>
 	<div th:replace="fragments/fragments :: header"></div>
 	
-	<div class="container">        
-       	<div th:if="${param.error}" th:replace="fragments/message-alert :: error('Invalid username and password.')"></div>
-       	<div th:if="${param.logout}" th:replace="fragments/message-alert :: error('You have been logged out.')"></div>
+	<div class="container">
+		<div th:if="${loginError}">        
+       		<div th:replace="fragments/message-alert :: error('Invalid username and password.')"></div>
+       	</div>       	
 	</div>
 		
 	<div th:replace="fragments/fragments :: footer"></div>	

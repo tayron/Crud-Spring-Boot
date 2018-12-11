@@ -13,16 +13,4 @@ public class MainController {
 		model.addAttribute("message", "Wellcome at Home Page");
 		return "index";		
 	}
-	
-	@RequestMapping("/login")
-	public String login(Model model)
-	{		
-		return "login";		
-	}
-	
-	@RequestMapping("/access-denied")
-	public String accessDenied(Model model)
-	{		
-		return "access-denied";		
-	}		
 }

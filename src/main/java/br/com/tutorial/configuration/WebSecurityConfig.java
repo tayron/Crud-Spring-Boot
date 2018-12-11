@@ -41,14 +41,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter
 				.authenticated()
 				.and()
 			.formLogin()
-				.loginPage("/login")
+				.loginPage("/authentication/login")
+				.failureUrl("/authentication/login-error")
 				.permitAll()
 				.and()
 			.logout()
+				.logoutSuccessUrl("/")
 				.permitAll()
 				.and()
 			.exceptionHandling()
-				.accessDeniedPage("/access-denied");
+				.accessDeniedPage("/authentication/access-denied");
 	}
 	
     @Override
