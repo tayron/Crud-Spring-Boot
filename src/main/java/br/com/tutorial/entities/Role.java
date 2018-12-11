@@ -3,15 +3,15 @@ package br.com.tutorial.entities;
 import java.sql.Timestamp;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Role {
@@ -25,7 +25,8 @@ public class Role {
 	@Size(min = 2, max = 85, message = "The name must between 2 and 85 characters")
 	private String name;
 
-	@OneToMany(mappedBy = "role", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "role")
+	@JsonIgnore
 	private List<User> user;
 
     @Column(

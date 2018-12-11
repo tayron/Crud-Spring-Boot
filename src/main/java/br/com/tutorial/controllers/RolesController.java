@@ -84,10 +84,8 @@ public class RolesController {
 	
 	@GetMapping({"/searchByName/{name}", "/searchByName"})
 	public @ResponseBody List<Role> searchByName(@PathVariable Optional<String> name){
-		if(name.isPresent()) {
-			return repository.findByNameContaining(name.get());
-		}else {
-			return repository.findAll();
-		}
+		return(name.isPresent())
+			? repository.findByNameContaining(name.get())
+			: repository.findAll();
 	}	
 }

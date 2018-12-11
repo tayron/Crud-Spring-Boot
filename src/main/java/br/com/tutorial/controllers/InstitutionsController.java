@@ -1,6 +1,5 @@
 package br.com.tutorial.controllers;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -83,18 +82,8 @@ public class InstitutionsController {
 	
 	@GetMapping({"/searchByName/{name}", "/searchByName"})
 	public @ResponseBody List<Institution> searchByName(@PathVariable Optional<String> name){	
-		List<Institution> institutions = (name.isPresent()) 
+		return (name.isPresent()) 
 			 ? repository.findByNameContaining(name.get())
 			 : repository.findAll();
-			 
-		List<Institution> listInstitution = new ArrayList<Institution>();
-		for (Institution institution : institutions) {
-			Institution institutionEntity = new Institution();
-			institutionEntity.setId(institution.getId());
-			institutionEntity.setName(institution.getName());
-			listInstitution.add(institutionEntity);
-		}
-		
-		return listInstitution;
 	}	
 }

@@ -1,6 +1,5 @@
 package br.com.tutorial.controllers;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -112,29 +111,8 @@ public class UsersController {
 	
 	@GetMapping({"/searchByName/{name}", "/searchByName"})
 	public @ResponseBody List<User> searchByName(@PathVariable Optional<String> name){
-		List<User> list = null;
-		
-		if(name.isPresent()) {
-			list = repository.findByNameContaining(name.get());
-		}else {
-			list = repository.findAll();
-		}		
-		
-		List<User> listUser = new ArrayList<User>();
-		for (User user : list) {
-			
-			Role roleEntity = new Role();
-			roleEntity.setId(user.getRole().getId());
-			roleEntity.setName(user.getRole().getName());
-			
-			User userEntity = new User();
-			userEntity.setId(user.getId());
-			userEntity.setName(user.getName());
-			userEntity.setRole(roleEntity);
-			
-			listUser.add(userEntity);
-		}
-		
-		return listUser;
+		return (name.isPresent())
+			? repository.findByNameContaining(name.get())
+			: repository.findAll();
 	}	
 }

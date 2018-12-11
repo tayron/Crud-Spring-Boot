@@ -3,15 +3,15 @@ package br.com.tutorial.entities;
 import java.sql.Timestamp;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Institution {
@@ -30,7 +30,8 @@ public class Institution {
 	@Size(min = 2, max = 100, message = "The address must between 2 and 100 characters")	
 	private String address;
 	
-	@OneToMany(mappedBy = "institution", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "institution")
+	@JsonIgnore
 	private List<Student> student;
 
     @Column(
