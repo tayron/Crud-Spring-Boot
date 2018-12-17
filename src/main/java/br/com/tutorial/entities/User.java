@@ -1,17 +1,22 @@
 package br.com.tutorial.entities;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;	
+
 @Entity
+@Table(name="\"user\"")
 public class User {
 
 	@Id
@@ -43,18 +48,13 @@ public class User {
     @ManyToOne    
 	private Role role;
 
-    @Column(
-        nullable = false, 
-        updatable = false,
-        columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
-    )
-    private Timestamp created;	
+    @Column
+    @CreationTimestamp
+    private LocalDateTime created;	
     
-    @Column(
-		nullable = false,
-		columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
-	)
-    private Timestamp updated;
+    @Column
+    @UpdateTimestamp
+    private LocalDateTime updated;
 
     
 	public Long getId() {
@@ -121,19 +121,19 @@ public class User {
 		this.role = role;
 	}
 
-	public Timestamp getCreated() {
+	public LocalDateTime getCreated() {
 		return created;
 	}
 
-	public void setCreated(Timestamp created) {
+	public void setCreated(LocalDateTime created) {
 		this.created = created;
 	}
 
-	public Timestamp getUpdated() {
+	public LocalDateTime getUpdated() {
 		return updated;
 	}
 
-	public void setUpdated(Timestamp updated) {
+	public void setUpdated(LocalDateTime updated) {
 		this.updated = updated;
 	}
 

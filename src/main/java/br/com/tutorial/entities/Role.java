@@ -1,6 +1,6 @@
 package br.com.tutorial.entities;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -10,6 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -29,18 +32,13 @@ public class Role {
 	@JsonIgnore
 	private List<User> user;
 
-    @Column(
-        nullable = false, 
-        updatable = false,
-        columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
-    )
-    private Timestamp created;	
+    @Column
+    @CreationTimestamp
+    private LocalDateTime created;	
     
-    @Column(
-		nullable = false,
-		columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
-	)
-    private Timestamp updated;
+    @Column
+    @UpdateTimestamp
+    private LocalDateTime updated;
 
     
 	public Long getId() {
@@ -67,19 +65,19 @@ public class Role {
 		this.user = user;
 	}
 
-	public Timestamp getCreated() {
+	public LocalDateTime getCreated() {
 		return created;
 	}
 
-	public void setCreated(Timestamp created) {
+	public void setCreated(LocalDateTime created) {
 		this.created = created;
 	}
 
-	public Timestamp getUpdated() {
+	public LocalDateTime getUpdated() {
 		return updated;
 	}
 
-	public void setUpdated(Timestamp updated) {
+	public void setUpdated(LocalDateTime updated) {
 		this.updated = updated;
 	}
 }
