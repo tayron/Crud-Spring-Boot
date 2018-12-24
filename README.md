@@ -1,4 +1,4 @@
-# Sistema de gestão de instituição e alunos
+contato@tayron.com.brcontato@tayron.com.br# Sistema de gestão de instituição e alunos
 
 #### Endereço: https://radiant-retreat-73061.herokuapp.com/
 
@@ -6,4 +6,4 @@ Este é um sistema em Java simples para estudo do Spring Boot, Spring Data, Spri
 
 #### Segurança
 
-Implementando autenticação, usuário: user e senha: admin
+Implementando autenticação, usuário: `contato@tayron.com.br` e senha: `123`
